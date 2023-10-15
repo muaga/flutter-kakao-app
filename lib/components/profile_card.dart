@@ -1,0 +1,33 @@
+import 'package:fltter_kakao_app/model/user.dart';
+import 'package:fltter_kakao_app/screens/profile_screen.dart';
+import 'package:flutter/material.dart';
+
+class ProfileCard extends StatelessWidget {
+  final User user;
+
+  const ProfileCard({super.key, required this.user});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => ProfileScreen(user: user)));
+        },
+        child: ListTile(
+          leading: CircleAvatar(
+            radius: 20,
+            backgroundImage: NetworkImage(user.backgroundImage),
+          ),
+          title: Text(user.name,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+          subtitle: Text(user.intro, style: TextStyle(fontSize: 12)),
+        ),
+      ),
+    );
+  }
+}
